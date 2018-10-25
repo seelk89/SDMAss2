@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{227755C6-2029-4CF9-85A1-5CC3DC55D5F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpikeReadingJson", "SpikeReadingJson\SpikeReadingJson.csproj", "{316B2F52-F5AD-4F93-B9C9-08288937AA78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ass2", "Ass2\Ass2.csproj", "{B910CE72-C846-413D-BA2B-3D64E2EAB765}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +10,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{227755C6-2029-4CF9-85A1-5CC3DC55D5F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{227755C6-2029-4CF9-85A1-5CC3DC55D5F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{227755C6-2029-4CF9-85A1-5CC3DC55D5F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{227755C6-2029-4CF9-85A1-5CC3DC55D5F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{316B2F52-F5AD-4F93-B9C9-08288937AA78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{316B2F52-F5AD-4F93-B9C9-08288937AA78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{316B2F52-F5AD-4F93-B9C9-08288937AA78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{316B2F52-F5AD-4F93-B9C9-08288937AA78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B910CE72-C846-413D-BA2B-3D64E2EAB765}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B910CE72-C846-413D-BA2B-3D64E2EAB765}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B910CE72-C846-413D-BA2B-3D64E2EAB765}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B910CE72-C846-413D-BA2B-3D64E2EAB765}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
