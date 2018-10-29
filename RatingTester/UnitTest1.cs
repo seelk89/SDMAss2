@@ -15,5 +15,15 @@ namespace RatingTester
 
             Assert.True(r.NumberOfReviewsFromReviewer(3) == 2);
         }
+        
+        [Fact]
+        public void TimesReviewerHasGivenRateTest1()
+        {
+            // int NumberOfReviewsFromReviewer(int reviewerId);
+            IRatingFunctions r = new RatingFunctions();
+
+
+            Assert.True(r.TimesReviewerHasGivenRate(3) == 2);
+        }
     }
 }

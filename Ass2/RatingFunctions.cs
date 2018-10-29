@@ -1,9 +1,17 @@
 using System.Collections.Generic;
+using Data;
 
 namespace Ass2
 {
     public class RatingFunctions : IRatingFunctions
     {
+        private readonly IData _data;
+        
+        public RatingFunctions(IData RealData)
+        {
+            _data = RealData;
+        }
+        
         public double AverageRateForSpecificMovie(int movieId)
         {
             throw new System.NotImplementedException();
