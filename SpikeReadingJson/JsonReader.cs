@@ -11,19 +11,9 @@ namespace SpikeReadingJson
     {
         static void Main(string[] args)
         {
-            string bla = "[{\"Reviewer\":1, \"Movie\":1488844, \"Grade\":3, \"Date\":'2005-09-06'}]";
-
-            //List<string> ratings = JsonConvert.DeserializeObject<List<string>>(bla);
-
-            //JsonConvert.DeserializeObject<List<Rating>>(bla);
-            
             var timer = DateTime.Now;
-            Console.WriteLine(timer);
-            using (StreamReader r = new StreamReader("ratings.json"))
-            {
-                List<string> ratings = JsonConvert.DeserializeObject<List<string>>(bla);
-            }
-            Console.WriteLine(DateTime.Now - timer);
+            IEnumerable<Rating> ratingsInList = JsonConvert.DeserializeObject<IEnumerable<Rating>>(File.ReadAllText(@"ratings.json"));
+            Console.WriteLine(timer - DateTime.Now);
         }
     }
 }
