@@ -7,10 +7,15 @@ namespace Data
 {
     public class MockData : IData
     {
+        List<Rating> mockData = new List<Rating>();
+        
         public List<Rating> jsonToRatingList()
         {
-            List<Rating> mockData = new List<Rating>();
-            
+            return mockData;
+        }
+
+        public void fillList()
+        {
             mockData.Add(new Rating()
             {
                 Movie = 1,
@@ -34,8 +39,6 @@ namespace Data
                 Grade = 3,
                 Reviewer = 3
             });
-
-            return mockData;
         }
     }
 }

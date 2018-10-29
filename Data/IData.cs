@@ -6,5 +6,6 @@ namespace Data
     public interface IData
     {
         List<Rating> jsonToRatingList();
+        void fillList();
     }
 }

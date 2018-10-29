@@ -12,5 +12,10 @@ namespace Data
         {
             return JsonConvert.DeserializeObject<IEnumerable<Rating>>(File.ReadAllText(@"ratings.json")).ToList();
         }
+
+        public void fillList()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
