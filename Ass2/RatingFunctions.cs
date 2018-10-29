@@ -9,12 +9,10 @@ namespace Ass2
     public class RatingFunctions : IRatingFunctions
     {
         private readonly IData _data;
-        private readonly List<Rating> _ratingsList;
         
         public RatingFunctions(IData RealData)
         {
             _data = RealData;
-            _ratingsList = _data.jsonToRatingList();
         }
         
         public double AverageRateForSpecificMovie(int movieId)
@@ -63,22 +61,29 @@ namespace Ass2
             throw new System.NotImplementedException();
         }
 
-        public int NumberOfReviewsFromReviewer(int reviewerId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public int TimesReviewerHasGivenRate(int reviewerId, int grade)
+        public int NumberOfReviewsFromReviewer(int reviewerId, List<Rating> ratingsList)
         {
             int count = 0;
-            foreach (var item in _ratingsList)
+            foreach (var item in ratingsList)
+            {
+                if (item.Reviewer == reviewerId)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        public int TimesReviewerHasGivenRate(int reviewerId, int grade, List<Rating> ratingsList)
+        {
+            int count = 0;
+            foreach (var item in ratingsList)
             {
                 if (item.Reviewer == reviewerId && item.Grade == grade)
                 {
                     count++;
                 }
             }
-
             return count;
         }
     }

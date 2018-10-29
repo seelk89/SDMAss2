@@ -42,15 +42,15 @@ namespace RatingTester
                 Date = "2009-10-12"
             });
 
-            Assert.True(list.Count == 3);
-            //Assert.True(r.NumberOfReviewsFromReviewer(1) == 2);
+            Assert.True(r.NumberOfReviewsFromReviewer(1, list) == 3);
         }
 
         [Fact]
         public void AverageRateFromReviewerTest2()
         {
             // int NumberOfReviewsFromReviewer(int reviewerId);
-            IRatingFunctions r = new RatingFunctions();
+            IData data = new MockData();
+            IRatingFunctions r = new RatingFunctions(data);
 
 
             Assert.True(r.AverageRateFromReviewer(5) == 2);
@@ -60,17 +60,21 @@ namespace RatingTester
         public void TimesReviewerHasGivenRateTest3()
         {
             // int NumberOfReviewsFromReviewer(int reviewerId);
-            IRatingFunctions r = new RatingFunctions();
+            IData data = new MockData();
+            IRatingFunctions r = new RatingFunctions(data);
 
+            data.fillList();
+            var list = data.jsonToRatingList();
 
-            Assert.True(r.TimesReviewerHasGivenRate(5, 3) == 2);
+            Assert.True(r.TimesReviewerHasGivenRate(1, 1, list) == 1);
         }
 
         [Fact]
         public void NumberOfReviewersForSpecificMovieTest4()
         {
             // int NumberOfReviewsFromReviewer(int reviewerId);
-            IRatingFunctions r = new RatingFunctions();
+            IData data = new MockData();
+            IRatingFunctions r = new RatingFunctions(data);
 
 
             Assert.True(r.NumberOfReviewersForSpecificMovie(5) == 2);
@@ -80,7 +84,8 @@ namespace RatingTester
         public void AverageRateForSpecificMovieTest5()
         {
             // int NumberOfReviewsFromReviewer(int reviewerId);
-            IRatingFunctions r = new RatingFunctions();
+            IData data = new MockData();
+            IRatingFunctions r = new RatingFunctions(data);
 
 
             Assert.True(r.AverageRateForSpecificMovie(5) == 2);
@@ -90,7 +95,8 @@ namespace RatingTester
         public void HowManySpecificGradesForSpecificMovieTest6()
         {
             // int NumberOfReviewsFromReviewer(int reviewerId);
-            IRatingFunctions r = new RatingFunctions();
+            IData data = new MockData();
+            IRatingFunctions r = new RatingFunctions(data);
 
 
             Assert.True(r.HowManySpecificGradesForSpecificMovie(5, 5) == 2);
@@ -101,7 +107,8 @@ namespace RatingTester
         public void IdOfMovieWithTheMost5sTest7()
         {
             // int NumberOfReviewsFromReviewer(int reviewerId);
-            IRatingFunctions r = new RatingFunctions();
+            IData data = new MockData();
+            IRatingFunctions r = new RatingFunctions(data);
 
 
             Assert.True(r.IdOfMovieWithTheMost5s() == 2);
@@ -111,7 +118,8 @@ namespace RatingTester
         public void IdOfReviewerWithMostReviewsTest8()
         {
             // int NumberOfReviewsFromReviewer(int reviewerId);
-            IRatingFunctions r = new RatingFunctions();
+            IData data = new MockData();
+            IRatingFunctions r = new RatingFunctions(data);
 
 
             Assert.True(r.IdOfReviewerWithMostReviews() == 2);
@@ -121,7 +129,8 @@ namespace RatingTester
         public void BestMovieTest9()
         {
             // int NumberOfReviewsFromReviewer(int reviewerId);
-            IRatingFunctions r = new RatingFunctions();
+            IData data = new MockData();
+            IRatingFunctions r = new RatingFunctions(data);
 
 
             Assert.True(r.BestMovie() == 2);
@@ -131,7 +140,8 @@ namespace RatingTester
         public void MoviesReviewerHasReviewedTest10()
         {
             // int NumberOfReviewsFromReviewer(int reviewerId);
-            IRatingFunctions r = new RatingFunctions();
+            IData data = new MockData();
+            IRatingFunctions r = new RatingFunctions(data);
 
 
           //  Assert.True(r.MoviesReviewerHasReviewed() == listttt);
@@ -141,43 +151,11 @@ namespace RatingTester
         public void ListOfReviewersForSpecificMovieTest11()
         {
             // int NumberOfReviewsFromReviewer(int reviewerId);
-            IRatingFunctions r = new RatingFunctions();
+            IData data = new MockData();
+            IRatingFunctions r = new RatingFunctions(data);
 
 
             //Assert.True(r.ListOfReviewersForSpecificMovie() == listt);
-        }
-        
-        [Fact]
-        public void TimesReviewerHasGivenRateTest1()
-        {
-            IData data = new MockData();
-            IRatingFunctions r = new RatingFunctions(data);
-            
-            var list = data.jsonToRatingList();
-
-            list.Add(new Rating() {
-                Movie = 1,
-                Grade = 1,
-                Reviewer = 1,
-                Date = "2009-10-10"
-            });
-            list.Add(new Rating()
-            {
-                Movie = 1,
-                Grade = 1,
-                Reviewer = 1,
-                Date = "2009-10-11"
-            });
-
-            list.Add(new Rating()
-            {
-                Movie = 1,
-                Grade = 1,
-                Reviewer = 2,
-                Date = "2009-10-12"
-            });
-
-            Assert.True(r.TimesReviewerHasGivenRate(1, 1) == 2);
         }
     }
 }

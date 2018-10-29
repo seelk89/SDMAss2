@@ -1,17 +1,18 @@
 using System.Collections.Generic;
+using SpikeReadingJson;
 
 namespace Ass2
 {
     public interface IRatingFunctions
     {
         //1 On input N, what are the number of reviews from reviewer N?
-        int NumberOfReviewsFromReviewer(int reviewerId);
+        int NumberOfReviewsFromReviewer(int reviewerId, List<Rating> ratingsList);
 
         //2 On input N, what is the average rate that reviewer N had given?
         double AverageRateFromReviewer(int reviewerId);
 
         //3 On input N and G, how many times has reviewer N given a movie grade G?
-        int TimesReviewerHasGivenRate(int reviewerId, int grade);
+        int TimesReviewerHasGivenRate(int reviewerId, int grade, List<Rating> ratingsList);
 
         //4 On input N, how many have reviewed movie N?
         int NumberOfReviewersForSpecificMovie(int movieId);
