@@ -15,7 +15,7 @@ namespace Ass2
         int TimesReviewerHasGivenRate(int reviewerId, int grade, List<Rating> ratingsList);
 
         //4 On input N, how many have reviewed movie N?
-        int NumberOfReviewersForSpecificMovie(int movieId);
+        int NumberOfReviewersForSpecificMovie(int movieId, List<Rating> ratingsList);
 
         //5 On input N, what is the average rate the movie N had received?
         double AverageRateForSpecificMovie(int movieId);
@@ -37,10 +37,10 @@ namespace Ass2
 
         //10 On input N, what are the movies that reviewer N has reviewed?
         //The list should be sorted decreasing by rate first, and date secondly.
-        List<int> MoviesReviewerHasReviewed();
+        List<Rating> MoviesReviewerHasReviewed(int reviewer, List<Rating> ratingsList);
 
         //11 On input N, what are the reviewers that have reviewed movie N? 
         //The list should be sorted decreasing by rate first, and date secondly.
-        List<int> ListOfReviewersForSpecificMovie();
+        List<Rating> ListOfReviewersForSpecificMovie(int movieId, List<Rating> ratingsList);
     }
 }

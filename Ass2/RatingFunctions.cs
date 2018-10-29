@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices.ComTypes;
 using Data;
 using SpikeReadingJson;
+using System.Linq;
 
 namespace Ass2
 {
@@ -45,22 +46,64 @@ namespace Ass2
         {
             throw new System.NotImplementedException();
         }
-        //Here
-        public List<int> ListOfReviewersForSpecificMovie()
+        
+        //Jesper
+        
+        //11 On input N, what are the reviewers that have reviewed movie N? 
+        //The list should be sorted decreasing by rate first, and date secondly.
+        public List<Rating> ListOfReviewersForSpecificMovie(int movieId, List<Rating> ratingsList)
         {
-            throw new System.NotImplementedException();
+            List<Rating> listOfReviewers = new List<Rating>();
+            foreach (var item in ratingsList)
+            {
+                if (item.Movie == movieId)
+                {
+                    listOfReviewers.Add(item);
+                }
+            }
+
+            listOfReviewers = listOfReviewers.OrderBy(r => r.Grade).ThenBy(r => r.Date).ToList();
+            
+            return listOfReviewers;
         }
 
-        public List<int> MoviesReviewerHasReviewed()
+        //10 On input N, what are the movies that reviewer N has reviewed?
+        //The list should be sorted decreasing by rate first, and date secondly.
+        public List<Rating> MoviesReviewerHasReviewed(int reviewer, List<Rating> ratingsList)
         {
-            throw new System.NotImplementedException();
+            List<Rating> listOfMovies = new List<Rating>();
+            foreach (var item in ratingsList)
+            {
+                if (item.Reviewer == reviewer)
+                {
+                    listOfMovies.Add(item);
+                }
+            }
+
+            listOfMovies = listOfMovies.OrderBy(r => r.Grade).ThenBy(r => r.Date).ToList();
+
+            return listOfMovies;
         }
 
-        public int NumberOfReviewersForSpecificMovie(int movieId)
+        //4 On input N, how many have reviewed movie N?
+        public int NumberOfReviewersForSpecificMovie(int movieId, List<Rating> ratingsList)
         {
-            throw new System.NotImplementedException();
+            Dictionary<int, int> hashMap = new Dictionary<int, int>();
+            foreach (var item in ratingsList)
+            {  
+                if (item.Movie == movieId)
+                {
+                    if (!hashMap.ContainsKey(item.Reviewer))
+                    {
+                        hashMap.Add(item.Reviewer, item.Movie);
+                    } 
+                }
+            }
+            
+            return hashMap.Count;
         }
 
+        //1 On input N, what are the number of reviews from reviewer N?
         public int NumberOfReviewsFromReviewer(int reviewerId, List<Rating> ratingsList)
         {
             int count = 0;
@@ -71,9 +114,11 @@ namespace Ass2
                     count++;
                 }
             }
+            
             return count;
         }
 
+        //3 On input N and G, how many times has reviewer N given a movie grade G?
         public int TimesReviewerHasGivenRate(int reviewerId, int grade, List<Rating> ratingsList)
         {
             int count = 0;
@@ -84,6 +129,7 @@ namespace Ass2
                     count++;
                 }
             }
+            
             return count;
         }
     }
