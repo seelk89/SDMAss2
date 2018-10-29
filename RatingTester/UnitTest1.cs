@@ -13,8 +13,9 @@ namespace RatingTester
         public void NumberOfReviewsFromReviewerTest1()
         {
             // int NumberOfReviewsFromReviewer(int reviewerId);
-            IRatingFunctions r = new RatingFunctions();
             IData data = new MockData();
+            IRatingFunctions r = new RatingFunctions(data);
+            
             List<Rating> list = data.jsonToRatingList();
 
             Assert.True(list.Count == 0);
@@ -105,7 +106,7 @@ namespace RatingTester
 
             Assert.True(r.IdOfMovieWithTheMost5s() == 2);
         }
-
+        
         [Fact]
         public void IdOfReviewerWithMostReviewsTest8()
         {
@@ -149,11 +150,34 @@ namespace RatingTester
         [Fact]
         public void TimesReviewerHasGivenRateTest1()
         {
-            // int NumberOfReviewsFromReviewer(int reviewerId);
-            IRatingFunctions r = new RatingFunctions();
+            IData data = new MockData();
+            IRatingFunctions r = new RatingFunctions(data);
+            
+            var list = data.jsonToRatingList();
 
+            list.Add(new Rating() {
+                Movie = 1,
+                Grade = 1,
+                Reviewer = 1,
+                Date = "2009-10-10"
+            });
+            list.Add(new Rating()
+            {
+                Movie = 1,
+                Grade = 1,
+                Reviewer = 1,
+                Date = "2009-10-11"
+            });
 
-            Assert.True(r.TimesReviewerHasGivenRate(3) == 2);
+            list.Add(new Rating()
+            {
+                Movie = 1,
+                Grade = 1,
+                Reviewer = 2,
+                Date = "2009-10-12"
+            });
+
+            Assert.True(r.TimesReviewerHasGivenRate(1, 1) == 2);
         }
     }
 }

@@ -1,15 +1,20 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices.ComTypes;
 using Data;
+using SpikeReadingJson;
 
 namespace Ass2
 {
     public class RatingFunctions : IRatingFunctions
     {
         private readonly IData _data;
+        private readonly List<Rating> _ratingsList;
         
         public RatingFunctions(IData RealData)
         {
             _data = RealData;
+            _ratingsList = _data.jsonToRatingList();
         }
         
         public double AverageRateForSpecificMovie(int movieId)
@@ -42,7 +47,7 @@ namespace Ass2
         {
             throw new System.NotImplementedException();
         }
-
+        //Here
         public List<int> ListOfReviewersForSpecificMovie()
         {
             throw new System.NotImplementedException();
@@ -65,7 +70,16 @@ namespace Ass2
 
         public int TimesReviewerHasGivenRate(int reviewerId, int grade)
         {
-            throw new System.NotImplementedException();
+            int count = 0;
+            foreach (var item in _ratingsList)
+            {
+                if (item.Reviewer == reviewerId && item.Grade == grade)
+                {
+                    count++;
+                }
+            }
+
+            return count;
         }
     }
 }

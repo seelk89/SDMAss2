@@ -12,7 +12,7 @@ namespace SpikeReadingJson
         static void Main(string[] args)
         {
             var timer = DateTime.Now;
-            List<Rating> ratingsInList = JsonConvert.DeserializeObject<IEnumerable<Rating>>(File.ReadAllText(@"ratings.json")).ToList();
+            //List<Rating> ratingsInList = JsonConvert.DeserializeObject<IEnumerable<Rating>>(File.ReadAllText(@"ratings.json")).ToList();
             Console.WriteLine(timer - DateTime.Now);
         }
     }
