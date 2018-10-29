@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace SpikeReadingJson
 {
@@ -8,31 +11,19 @@ namespace SpikeReadingJson
     {
         static void Main(string[] args)
         {
-            string json = @"{
-            'CPU': 'Intel',
-            'PSU': '500W',
-            'Drives': [
-            'DVD read/writer'
-            /*(broken)*/,
-            '500 gigabyte hard drive',
-            '200 gigabype hard drive'
-            ]
-            }";
+            string bla = "[{\"Reviewer\":1, \"Movie\":1488844, \"Grade\":3, \"Date\":'2005-09-06'}]";
 
-            JsonTextReader reader = new JsonTextReader(new StringReader(json));
-            while (reader.Read())
+            //List<string> ratings = JsonConvert.DeserializeObject<List<string>>(bla);
+
+            //JsonConvert.DeserializeObject<List<Rating>>(bla);
+            
+            var timer = DateTime.Now;
+            Console.WriteLine(timer);
+            using (StreamReader r = new StreamReader("ratings.json"))
             {
-                if (reader.Value != null)
-                {
-                    Console.WriteLine("Token: {0}, Value: {1}", reader.TokenType, reader.Value);
-                }
-                else
-                {
-                    Console.WriteLine("Token: {0}", reader.TokenType);
-                }
+                List<string> ratings = JsonConvert.DeserializeObject<List<string>>(bla);
             }
-
-            Console.ReadLine();
+            Console.WriteLine(DateTime.Now - timer);
         }
     }
 }
