@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 
 namespace SpikeReadingJson
 {
-    class JsonReader
+    public class JsonReader
     {
         static void Main(string[] args)
         {
