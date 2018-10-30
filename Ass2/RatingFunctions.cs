@@ -37,9 +37,40 @@ namespace Ass2
             throw new System.NotImplementedException();
         }
 
-        public double IdOfMovieWithTheMost5s()
+        //7 What is the id(s) of the movie(s) with the highest number of top rates (5)?
+        public List<MovieIdAndAverage> IdOfMovieWithTheMost5s(List<Rating> ratingsList)
         {
-            throw new System.NotImplementedException();
+            List<MovieIdAndAverage> top5 = new List<MovieIdAndAverage>();
+            Dictionary<int, Average> movieIdAndAverage = new Dictionary<int, Average>();
+            foreach (var item in ratingsList)
+            {  
+                if (!movieIdAndAverage.ContainsKey(item.Movie))
+                {
+                    Average average = new Average();
+                    average.count = 1;
+                    average.grade = item.Grade;
+                    
+                    movieIdAndAverage.Add(item.Movie, average);
+                }
+                else
+                {
+                    movieIdAndAverage[item.Movie].count = movieIdAndAverage[item.Movie].count + 1;
+                    movieIdAndAverage[item.Movie].grade = movieIdAndAverage[item.Movie].grade + item.Grade;
+                }
+            }
+
+            foreach (var item in movieIdAndAverage)
+            {
+                MovieIdAndAverage mIdAAve = new MovieIdAndAverage();
+                mIdAAve.movieId = item.Key;
+                mIdAAve.average = item.Value.grade / item.Value.count;
+                
+                top5.Add(mIdAAve);
+            }
+
+            top5 = top5.OrderByDescending(a => a.average).Take(5).ToList();
+            
+            return top5;
         }
 
         public int IdOfReviewerWithMostReviews()

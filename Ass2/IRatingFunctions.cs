@@ -25,7 +25,7 @@ namespace Ass2
 
         //7 What is the id(s) of the movie(s) with the highest number of top rates (5)?
         //plural!!!
-        double IdOfMovieWithTheMost5s();
+        List<MovieIdAndAverage> IdOfMovieWithTheMost5s(List<Rating> ratingsList);
 
         //8 What reviewer(s) had done most reviews? 
         //plural!!!

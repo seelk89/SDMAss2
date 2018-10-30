@@ -41,6 +41,14 @@ namespace FunctionsRunner
                 Console.WriteLine("Reviewer: " + item.Reviewer + " Movie: " + item.Movie + " Grade: " + item.Grade + " Date: " + item.Date);
             }
             Console.WriteLine("Function took: " + (timer6 - DateTime.Now));
+            
+            var timer7 = DateTime.Now;
+            Console.WriteLine("IdOfMovieWithTheMost5s: ");
+            foreach (var item in r.IdOfMovieWithTheMost5s(list))
+            {
+                Console.WriteLine("MovieId: " + item.movieId + " Average: " + item.average);
+            }
+            Console.WriteLine("Function took: " + (timer7 - DateTime.Now));
         }
     }
 }
