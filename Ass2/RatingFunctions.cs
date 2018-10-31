@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.Design;
 using System.Runtime.InteropServices.ComTypes;
 using Data;
 using SpikeReadingJson;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Ass2
 {
@@ -38,47 +41,38 @@ namespace Ass2
         }
 
         //7 What is the id(s) of the movie(s) with the highest number of top rates (5)?
-        public List<MovieIdAndAverage> IdOfMovieWithTheMost5s(List<Rating> ratingsList)
+        public List<int> IdOfMovieWithTheMost5s(List<Rating> ratingsList)
         {
-            List<MovieIdAndAverage> top5 = new List<MovieIdAndAverage>();
-            Dictionary<int, Average> movieIdAndAverage = new Dictionary<int, Average>();
+            Dictionary<int, int> movieIdAnd5Count = new Dictionary<int, int>();
             foreach (var item in ratingsList)
             {  
-                if (!movieIdAndAverage.ContainsKey(item.Movie))
+                if (!movieIdAnd5Count.ContainsKey(item.Movie) && item.Grade == 5)
                 {
-                    Average average = new Average();
-                    average.count = 1;
-                    average.grade = item.Grade;
-                    
-                    movieIdAndAverage.Add(item.Movie, average);
+                    movieIdAnd5Count.Add(item.Movie, 1);
                 }
-                else
+                else if (movieIdAnd5Count.ContainsKey(item.Movie))
                 {
-                    movieIdAndAverage[item.Movie].count = movieIdAndAverage[item.Movie].count + 1;
-                    movieIdAndAverage[item.Movie].grade = movieIdAndAverage[item.Movie].grade + item.Grade;
+                    movieIdAnd5Count[item.Movie] = movieIdAnd5Count[item.Movie] + 1;
                 }
             }
 
-            foreach (var item in movieIdAndAverage)
+            List<int> listOfMoviesWithMost5 = new List<int>();
+            var found = movieIdAnd5Count.Max(x => x.Value);
+            foreach (var item in movieIdAnd5Count)
             {
-                MovieIdAndAverage mIdAAve = new MovieIdAndAverage();
-                mIdAAve.movieId = item.Key;
-                mIdAAve.average = item.Value.grade / item.Value.count;
-                
-                top5.Add(mIdAAve);
+                if (item.Value == found)
+                {
+                    listOfMoviesWithMost5.Add(item.Key);
+                }
             }
-
-            top5 = top5.OrderByDescending(a => a.average).Take(5).ToList();
             
-            return top5;
+            return listOfMoviesWithMost5;
         }
 
         public int IdOfReviewerWithMostReviews()
         {
             throw new System.NotImplementedException();
         }
-        
-        //Jesper
         
         //11 On input N, what are the reviewers that have reviewed movie N? 
         //The list should be sorted decreasing by rate first, and date secondly.

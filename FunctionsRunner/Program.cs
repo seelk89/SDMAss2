@@ -46,7 +46,7 @@ namespace FunctionsRunner
             Console.WriteLine("IdOfMovieWithTheMost5s: ");
             foreach (var item in r.IdOfMovieWithTheMost5s(list))
             {
-                Console.WriteLine("MovieId: " + item.movieId + " Average: " + item.average);
+                Console.WriteLine("MovieId: " + item);
             }
             Console.WriteLine("Function took: " + (timer7 - DateTime.Now));
         }
