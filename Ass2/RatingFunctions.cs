@@ -35,9 +35,19 @@ namespace Ass2
             throw new System.NotImplementedException();
         }
 
-        public int HowManySpecificGradesForSpecificMovie(int movieId, int grade)
+        //6 On input N and G, how many times had movie N received grade G?
+        public int HowManySpecificGradesForSpecificMovie(List<Rating> ratingsList, int movieId, int grade)
         {
-            throw new System.NotImplementedException();
+            int count = 0;
+            foreach (var item in ratingsList)
+            {
+                if (item.Movie == movieId && item.Grade == grade)
+                {
+                    count++;
+                }
+            }
+
+            return count;
         }
 
         //7 What is the id(s) of the movie(s) with the highest number of top rates (5)?
@@ -57,7 +67,7 @@ namespace Ass2
             }
 
             List<int> listOfMoviesWithMost5 = new List<int>();
-            var found = movieIdAnd5Count.Max(x => x.Value);
+            var found = movieIdAnd5Count.Max(i => i.Value);
             foreach (var item in movieIdAnd5Count)
             {
                 if (item.Value == found)
@@ -69,9 +79,33 @@ namespace Ass2
             return listOfMoviesWithMost5;
         }
 
-        public int IdOfReviewerWithMostReviews()
+        //8 What reviewer(s) had done most reviews? 
+        public List<int> IdOfReviewerWithMostReviews(List<Rating> ratingsList)
         {
-            throw new System.NotImplementedException();
+            Dictionary<int, int> reviewerWithMostReviews = new Dictionary<int, int>();
+            foreach (var item in ratingsList)
+            {
+                if (!reviewerWithMostReviews.ContainsKey(item.Reviewer))
+                {
+                    reviewerWithMostReviews.Add(item.Reviewer, 1);
+                }
+                else if (reviewerWithMostReviews.ContainsKey(item.Reviewer))
+                {
+                    reviewerWithMostReviews[item.Reviewer] = reviewerWithMostReviews[item.Reviewer] + 1;
+                }
+            }
+            
+            List<int> listOfReviewersWithMostReviews = new List<int>();
+            var found = reviewerWithMostReviews.Max(i => i.Value);
+            foreach (var item in reviewerWithMostReviews)
+            {
+                if (item.Value == found)
+                {
+                    listOfReviewersWithMostReviews.Add(item.Key);
+                }
+            }
+
+            return listOfReviewersWithMostReviews;
         }
         
         //11 On input N, what are the reviewers that have reviewed movie N? 

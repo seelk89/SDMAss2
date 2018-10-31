@@ -49,6 +49,18 @@ namespace FunctionsRunner
                 Console.WriteLine("MovieId: " + item);
             }
             Console.WriteLine("Function took: " + (timer7 - DateTime.Now));
+            
+            var timer8 = DateTime.Now;
+            Console.WriteLine("IdOfReviewerWithMostReviews: ");
+            foreach (var item in r.IdOfReviewerWithMostReviews(list))
+            {
+                Console.WriteLine("ReviewerId: " + item);
+            }
+            Console.WriteLine("Function took: " + (timer8 - DateTime.Now));
+            
+            var timer9 = DateTime.Now;
+            Console.WriteLine("HowManySpecificGradesForSpecificMovie: " + r.HowManySpecificGradesForSpecificMovie(list, 1488844, 1));
+            Console.WriteLine("Function took: " + (timer9 - DateTime.Now));
         }
     }
 }

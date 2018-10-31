@@ -21,7 +21,7 @@ namespace Ass2
         double AverageRateForSpecificMovie(int movieId);
 
         //6 On input N and G, how many times had movie N received grade G?
-        int HowManySpecificGradesForSpecificMovie(int movieId, int grade);
+        int HowManySpecificGradesForSpecificMovie(List<Rating> ratingsList, int movieId, int grade);
 
         //7 What is the id(s) of the movie(s) with the highest number of top rates (5)?
         //plural!!!
@@ -29,7 +29,7 @@ namespace Ass2
 
         //8 What reviewer(s) had done most reviews? 
         //plural!!!
-        int IdOfReviewerWithMostReviews();
+        List<int> IdOfReviewerWithMostReviews(List<Rating> ratingsList);
 
         //9 On input N, what is top N of movies? The score of a movie is its average rate.
         //input?
