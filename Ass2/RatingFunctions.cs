@@ -19,20 +19,63 @@ namespace Ass2
             _data = RealData;
         }
         
-        public double AverageRateForSpecificMovie(int movieId)
+        public double AverageRateForSpecificMovie(int movieId, List<Rating> ratingsList)
         {
-            throw new System.NotImplementedException();
+            int count = 0;
+            int sum = 0;
+
+            foreach (var item in ratingsList)
+            {
+                if (item.Movie == movieId)
+                {
+                    sum += item.Grade;
+                    count++;
+                }
+            }
+            return sum /= count;
         }
 
-        public double AverageRateFromReviewer(int reviewerId)
+        public double AverageRateFromReviewer(int reviewerId, List<Rating> ratingsList)
         {
 
-            throw new System.NotImplementedException();
+            int count = 0;
+            int sum = 0;
+
+            foreach (var item in _data.jsonToRatingList())
+            {
+                if (item.Reviewer == reviewerId)
+                {
+                    sum += item.Grade;
+                    count++;
+                }
+            }
+            return sum /= count;
         }
 
-        public int BestMovie()
+        //9 On input N, what is top N of movies? The score of a movie is its average rate.
+        public int BestMovie(List<Rating> ratingsList)
         {
-            throw new System.NotImplementedException();
+            int count = 0;
+            int sum = 0;
+            double avgRate = 0;
+            int movieId = 1;
+            foreach (var item in ratingsList)
+            {
+                movieId = item.Movie;
+                if (item.Movie == movieId)
+                {       
+                    sum += item.Grade;
+                    count++;
+
+                    if (sum / count > avgRate)
+                    {
+                        movieId = item.Movie;
+                        avgRate = sum / count;      
+                    }
+                }
+                return movieId;
+            }
+            return movieId;
         }
 
         //6 On input N and G, how many times had movie N received grade G?
