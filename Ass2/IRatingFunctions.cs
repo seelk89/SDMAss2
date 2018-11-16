@@ -33,7 +33,7 @@ namespace Ass2
 
         //9 On input N, what is top N of movies? The score of a movie is its average rate.
         //input?
-        int BestMovie(List<Rating> ratingsList);
+        int[] BestMovie(int n,List<Rating> ratingsList);
 
         //10 On input N, what are the movies that reviewer N has reviewed?
         //The list should be sorted decreasing by rate first, and date secondly.

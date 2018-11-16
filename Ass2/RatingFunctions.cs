@@ -53,29 +53,12 @@ namespace Ass2
         }
 
         //9 On input N, what is top N of movies? The score of a movie is its average rate.
-        public int BestMovie(List<Rating> ratingsList)
+        public int[] BestMovie(int n, List<Rating> ratingsList)
         {
-            int count = 0;
-            int sum = 0;
-            double avgRate = 0;
-            int movieId = 1;
-            foreach (var item in ratingsList)
-            {
-                movieId = item.Movie;
-                if (item.Movie == movieId)
-                {       
-                    sum += item.Grade;
-                    count++;
-
-                    if (sum / count > avgRate)
-                    {
-                        movieId = item.Movie;
-                        avgRate = sum / count;      
-                    }
-                }
-                return movieId;
-            }
-            return movieId;
+            var bestMovie = ratingsList.GroupBy(bm => bm.Movie).
+                OrderBy(bm => bm.Average(g => g.Grade)).
+                Select(bm => bm.Key).Take(n).ToArray();
+            return bestMovie;
         }
 
         //6 On input N and G, how many times had movie N received grade G?

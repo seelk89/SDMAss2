@@ -100,7 +100,7 @@ namespace RatingTester
             
             Assert.True(r.NumberOfReviewersForSpecificMovie(1, list) == 1);
         }
-        //TODO
+        
         [Fact]
         public void AverageRateForSpecificMovieTest5()
         { 
@@ -131,7 +131,7 @@ namespace RatingTester
             });
             Assert.True(r.AverageRateForSpecificMovie(1, list) == 1);
         }
-        //TODO
+        
         [Fact]
         public void HowManySpecificGradesForSpecificMovieTest6()
         {
@@ -233,7 +233,7 @@ namespace RatingTester
               Assert.True(r.IdOfReviewerWithMostReviews() == 1);
         }
 
-        //TODO
+        
         [Fact]
         public void BestMovieTest9()
         {
