@@ -7,7 +7,6 @@ using Xunit;
 
 namespace RatingTester
 {
-    //Stuff
     public class UnitTest1
     {
         [Fact]
